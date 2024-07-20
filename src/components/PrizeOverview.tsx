@@ -1,10 +1,5 @@
-
-import { LaureatesTable } from './LaureatesTable'
-import Modal from './Modal'
-import { SelectSearch } from './SelectSearch'
 import { PrizeChart } from './PrizeChart'
-import { usePrizes } from '../hooks'
-import { useLaureates } from '../hooks/laureates'
+import { usePrizes, useLaureates } from '../hooks'
 import { SelectYearRange } from './SelectYearRange'
 import { useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
@@ -40,8 +35,7 @@ const PrizeOverview = () => {
   const categoryAwards = useMemo(() => countCategories(data || []), [data]);
 
   return (
-    <div className="m-auto mt-6 flex max-w-[1000px] flex-col gap-4 px-10 py-2.5">
-      <h1 className='text-4xl font-semibold text-center'>Nodel Prizes and Laureates</h1>
+    <div>
       <h2 className='text-3xl font-semibold text-center mt-7 mb-5'>Prize Overview:</h2>
 
       <div className='flex items-center gap-10'>
@@ -54,7 +48,7 @@ const PrizeOverview = () => {
           }}
         />
       </div>
-      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nodel prizes</h3>
+      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nobel prizes</h3>
       <div className="grid grid-cols-3 gap-3">
         {data?.map((prize) => (
           <div
@@ -68,8 +62,8 @@ const PrizeOverview = () => {
         ))}
       </div>
 
-      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nodel Laureates</h3>
-      <div className="grid grid-cols-3 gap-3">
+      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nobel Laureates</h3>
+      <div className="grid grid-cols-3 gap-3 mb-7">
         {dataLaureates?.map((laureate) => (
           <div
             key={laureate.id}
@@ -84,12 +78,6 @@ const PrizeOverview = () => {
         subtitle={`${yearsRange[0]}-${yearsRange[1]}`}
         data={categoryAwards}
       />
-
-      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>-------------------------</h3>
-
-      <Modal />
-      <SelectSearch />
-      <LaureatesTable />
     </div>
     )
 }

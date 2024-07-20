@@ -6,7 +6,7 @@ export const getPrizes = async (offset = 0, limit = 100, nobelPrizeYear?: number
 };
 
 export const getPrize = async (category: string, year: number) => {
-  const response = await axios.get(`https://api.nobelprize.org/2.1//nobelPrize/${category}/${year}`);
+  const response = await axios.get(`https://api.nobelprize.org/2.1/nobelPrize/${category}/${year}`);
   return response.data;
 };
 

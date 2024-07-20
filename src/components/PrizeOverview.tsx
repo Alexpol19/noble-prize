@@ -20,14 +20,10 @@ const PrizeOverview = () => {
   const [yearsRange, setYearsRange] = useState([1901, 1909])
 
   const {
-    isPending,
-    error,
     data,
     isFetching
   } = usePrizes(yearsRange[0], yearsRange[1]);
   const {
-    isPending: isPendingLaureates,
-    error: errorLaureates,
     data: dataLaureates,
     isFetching: isFetchingLaureates
   } = useLaureates(yearsRange[0], yearsRange[1]);

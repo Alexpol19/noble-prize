@@ -40,12 +40,12 @@ export function LaureatesTable({
           ))}
         </TableBody>
       </Table>
-        {(!data || !data.length) && !loading && (
-          <h4 className="w-full py-3 text-2xl font-semibold text-center my-0">No data found</h4>
-        )}
-        {loading && (
-          <h4 className="w-full py-3 text-2xl font-semibold text-center my-0 text-gray-600">Loading...</h4>
-        )}
+      {(!data || !data.length) && !loading && (
+        <h4 className="w-full py-3 text-2xl font-semibold text-center my-0">No data found</h4>
+      )}
+      {loading && (
+        <h4 className="w-full py-3 text-2xl font-semibold text-center my-0 text-gray-600">Loading...</h4>
+      )}
     </>
   )
 }

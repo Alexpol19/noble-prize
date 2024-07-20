@@ -6,10 +6,12 @@ import { format } from "date-fns";
 const LaureateModal = ({
   laureate,
   open,
+  loading,
   onOpenChange
 }: {
   laureate: any,
   open: boolean,
+  loading: boolean,
   onOpenChange: (open: boolean) => void
 }) => (
   <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -17,10 +19,10 @@ const LaureateModal = ({
       <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
       <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
         <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
-          {laureate && <a href={laureate.wikipedia?.english} target='_blank' className='text-xl'>{laureate.fullName?.en || laureate.orgName?.en}</a>}
+          {laureate && !loading && <a href={laureate.wikipedia?.english} target='_blank' className='text-xl'>{laureate.fullName?.en || laureate.orgName?.en}</a>}
         </Dialog.Title>
 
-        {laureate && (
+        {laureate && !loading && (
           <div>
             <p className="my-3 flex gap-3">
               <span>Born:</span>
@@ -48,14 +50,20 @@ const LaureateModal = ({
                   <p className="my-3 flex gap-3">
                     Prize amount: {prize.prizeAmount}
                   </p>
+                  <p className="my-3 flex gap-3">
+                    Residence: {prize.residences[0].locationString.en}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {!laureate && (
+        {!laureate && !loading && (
           <h4 className="w-full py-3 text-2xl font-semibold text-center my-0">No data found</h4>
+        )}
+        {loading && (
+          <h4 className="w-full py-3 text-2xl font-semibold text-center my-0 text-gray-600">Loading...</h4>
         )}
         
         <div className="mt-[25px] flex justify-end">

@@ -1,6 +1,6 @@
 import { LaureatesTable } from './LaureatesTable'
-import { useSearchLaureates } from '../hooks'
-import React, { useState } from 'react'
+import { useLaureate, useSearchLaureates } from '../hooks'
+import { useState } from 'react'
 import LaureateModal from './LaureateModal';
 
 const LaureateOverview = () => {
@@ -10,13 +10,18 @@ const LaureateOverview = () => {
   const [ lastChanged, setLastChanged ] = useState<'name' | 'residence'>('name');
 
   const {
+    isPending: isPendingLaureates,
+    error: errorLaureates,
     data: dataLaureates,
     isFetching: isFetchingLaureates
   } = useSearchLaureates(lastChanged === 'name' ? laureateName : '', lastChanged === 'residence' ? laureateResidence : '');
 
-  const laureateById = React.useMemo(() => {
-    return dataLaureates?.find((laureate) => laureate.id === laureateId)
-  }, [laureateId]);
+  const {
+    isPending: isPendingLaureate,
+    error: errorLaureate,
+    data: dataLaureate,
+    isFetching: isFetchingLaureate
+  } = useLaureate(laureateId);
 
   return (
     <div>
@@ -50,8 +55,9 @@ const LaureateOverview = () => {
         loading={isFetchingLaureates}
       />
       <LaureateModal
-        laureate={laureateById}
+        laureate={dataLaureate?.length && dataLaureate[0]}
         open={!!laureateId}
+        loading={isFetchingLaureate}
         onOpenChange={(open) => !open && setLaureateId(0)}
       />
     </div>

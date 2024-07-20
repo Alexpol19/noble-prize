@@ -33,3 +33,17 @@ export {
   TableRow,
   TableFooter,
 } from "./Table"
+export {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "./Chart"
+export type { ChartConfig } from "./Chart"
+export {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./Card"

@@ -5,12 +5,10 @@ import { getPrizes } from '../api'
 import { LaureatesTable } from './LaureatesTable'
 import Modal from './Modal'
 import { SelectSearch } from './SelectSearch'
+import { PrizeChart } from './PrizeChart'
 
 const PrizeOverview = () => {
 
-  // Access the client
-
-  // Queries
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ['prizes'],
     queryFn: getPrizes,
@@ -27,6 +25,7 @@ const PrizeOverview = () => {
       <Modal />
       <SelectSearch />
       <LaureatesTable />
+      <PrizeChart />
     </>
     )
 }

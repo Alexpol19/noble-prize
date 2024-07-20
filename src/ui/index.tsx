@@ -46,4 +46,13 @@ export {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./Card"
+} from "./Card";
+export {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel
+} from "./Select"

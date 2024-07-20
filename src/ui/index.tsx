@@ -1,4 +1,3 @@
-export {default as Modal} from "./Modal";
 export {
   Command,
   CommandDialog,
@@ -24,4 +23,13 @@ export {
   DialogTrigger,
 } from "./Dialog";
 export { Button } from "./Button";
-export { Combobox } from "./Combobox"
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableFooter,
+} from "./Table"

@@ -41,7 +41,7 @@ const frameworks = [
   },
 ]
 
-export function Combobox() {
+export function SelectSearch() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 

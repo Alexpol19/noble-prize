@@ -2,7 +2,9 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import { getPrizes } from '../api'
-import { Combobox, Modal } from '../ui'
+import { LaureatesTable } from './LaureatesTable'
+import Modal from './Modal'
+import { SelectSearch } from './SelectSearch'
 
 const PrizeOverview = () => {
 
@@ -23,7 +25,8 @@ const PrizeOverview = () => {
     <>
       {/* <ul>{query.data?.map((prize) => <li key={prize.id}>{prize.title}</li>)}</ul> */}
       <Modal />
-      <Combobox />
+      <SelectSearch />
+      <LaureatesTable />
     </>
     )
 }

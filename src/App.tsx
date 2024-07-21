@@ -14,6 +14,7 @@ function App() {
         <h1 className='text-4xl font-semibold text-center'>Nobel Prizes and Laureates</h1>
         <PrizeOverview />
         <LaureateOverview />
+        <div className='mb-7' />
       </div>
     </QueryClientProvider>
   )

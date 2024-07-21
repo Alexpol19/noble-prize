@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Label, Pie, PieChart } from "recharts"
 
@@ -43,7 +41,7 @@ export function PrizeChart({
       value: item[1],
       fill: dynamicColors(),
     }))]
-  }, [data])
+  }, [data]);
 
   return (
     <Card className="flex flex-col">

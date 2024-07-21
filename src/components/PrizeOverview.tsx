@@ -3,6 +3,8 @@ import { usePrizes, useLaureates } from '../hooks'
 import { SelectYearRange } from './SelectYearRange'
 import { useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import { LaureatesNumberChart } from './LaureatesNumberChart';
+import { PrizeAmountChart } from './PrizeAmountChart';
 
 const countCategories = (data: any[]):Record<string, number> => {
   return data.reduce((acc, item) => {
@@ -13,6 +15,32 @@ const countCategories = (data: any[]):Record<string, number> => {
       acc[category] = 1;
     }
     return acc;
+  }, {});
+};
+
+const groupPrizesByYear = (prizes: any[]):Record<string, any> => prizes.reduce((acc, prize) => {
+  const { awardYear } = prize;
+  if (!acc[awardYear]) {
+      acc[awardYear] = [];
+  }
+  acc[awardYear].push(prize);
+  return acc;
+}, {});
+
+const groupLaureatesByYear = (laureates: any[], yearsRange: number[]):Record<string, any> => {
+  const [minYear, maxYear] = yearsRange;
+
+  return laureates.reduce((acc, laureate) => {
+      laureate.nobelPrizes.forEach((prize: any) => {
+          const { awardYear } = prize;
+          if (awardYear >= minYear && awardYear <= maxYear) {
+              if (!acc[awardYear]) {
+                  acc[awardYear] = [];
+              }
+              acc[awardYear].push(laureate);
+          }
+      });
+      return acc;
   }, {});
 };
 
@@ -30,6 +58,9 @@ const PrizeOverview = () => {
 
   const categoryAwards = useMemo(() => countCategories(data || []), [data]);
 
+  const groupedPrizesPerYear = useMemo(() => groupPrizesByYear(data || []), [data]);
+  const groupedLaureatesPerYear = useMemo(() => groupLaureatesByYear(dataLaureates || [], yearsRange), [dataLaureates]);
+
   return (
     <div>
       <h2 className='text-3xl font-semibold text-center mt-7 mb-5'>Prize Overview:</h2>
@@ -44,32 +75,19 @@ const PrizeOverview = () => {
           }}
         />
       </div>
-      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nobel prizes</h3>
-      <div className="grid grid-cols-3 gap-3">
-        {data?.map((prize) => (
-          <div
-            key={uuidv4()}
-            className='flex gap-3'
-          >
-            <span>{prize.dateAwarded}</span>
-            <span>{prize.prizeAmountAdjusted}</span>
-            <span>{prize.category.en}</span>
-          </div>
-        ))}
-      </div>
-
-      <h3 className='text-2xl font-semibold text-center mt-7 mb-5'>Nobel Laureates</h3>
-      <div className="grid grid-cols-3 gap-3 mb-7">
-        {dataLaureates?.map((laureate) => (
-          <div
-            key={laureate.id}
-            className='flex gap-3'
-          >
-            <span>{laureate.fullName?.en || laureate.orgName?.en}</span>
-          </div>
-        ))}
-      </div>
-
+      <div className="mb-7" />
+      <PrizeAmountChart
+        title="Adjusted award amount"
+        subtitle={`${yearsRange[0]}-${yearsRange[1]}`}
+        data={groupedPrizesPerYear}
+      />
+      <div className="mb-7" />
+      <LaureatesNumberChart
+        title="Number of laureates"
+        subtitle={`${yearsRange[0]}-${yearsRange[1]}`}
+        data={groupedLaureatesPerYear}
+      />
+      <div className="mb-7" />
       <PrizeChart
         subtitle={`${yearsRange[0]}-${yearsRange[1]}`}
         data={categoryAwards}

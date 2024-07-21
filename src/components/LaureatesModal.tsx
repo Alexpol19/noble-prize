@@ -3,26 +3,26 @@ import { format } from "date-fns";
 import Modal from '../ui/Modal';
 import { extractYear, formatDate } from '../utils';
 
-const LaureateModal = ({
-  laureate,
+const LaureatesModal = ({
+  laureates,
+  awardYear,
   open,
-  loading,
   onOpenChange
 }: {
-  laureate: any,
+  laureates: any[],
+  awardYear: string | null
   open: boolean,
-  loading: boolean,
   onOpenChange: (open: boolean) => void
 }) => (
   <Modal
-    title={laureate && !loading ? laureate.fullName?.en || laureate.orgName?.en : ''}
-    titleHref={laureate && !loading ? laureate.wikipedia?.english : ''}
+    title={`Laureates ${awardYear}`}
     open={open}
     onOpenChange={onOpenChange}
     content={
       <>
-        {laureate && !loading && (
-          <div>
+        {laureates?.length  && laureates.map((laureate, i) => (
+          <div key={laureate.id} className={`${i !== laureates.length -1 && 'border-b border-gray-300 mt-3'}`}>
+            <span className='text-lg font-bold mb-3'>{laureate.fullName?.en || laureate.orgName?.en}</span>
             <p className="my-3 flex gap-3">
               <span>{laureate.birth?.date ? 'Born' : 'Founded'}:</span>
               <span>
@@ -64,17 +64,14 @@ const LaureateModal = ({
               ))}
             </div>
           </div>
-        )}
+        ))}
 
-        {!laureate && !loading && (
+        {!laureates && (
           <h4 className="w-full py-3 text-2xl font-semibold text-center my-0">No data found</h4>
-        )}
-        {loading && (
-          <h4 className="w-full py-3 text-2xl font-semibold text-center my-0 text-gray-600">Loading...</h4>
         )}
       </>
     }
   />
 );
 
-export default LaureateModal;
+export default LaureatesModal;

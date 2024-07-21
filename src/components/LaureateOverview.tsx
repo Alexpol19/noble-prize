@@ -10,15 +10,11 @@ const LaureateOverview = () => {
   const [ lastChanged, setLastChanged ] = useState<'name' | 'residence'>('name');
 
   const {
-    isPending: isPendingLaureates,
-    error: errorLaureates,
     data: dataLaureates,
     isFetching: isFetchingLaureates
   } = useSearchLaureates(lastChanged === 'name' ? laureateName : '', lastChanged === 'residence' ? laureateResidence : '');
 
   const {
-    isPending: isPendingLaureate,
-    error: errorLaureate,
     data: dataLaureate,
     isFetching: isFetchingLaureate
   } = useLaureate(laureateId);

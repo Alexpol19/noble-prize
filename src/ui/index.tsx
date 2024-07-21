@@ -10,11 +10,6 @@ export {
   CommandShortcut,
 } from "./Command";
 export {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./Popover"
-export {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -22,7 +17,6 @@ export {
   DialogTitle,
   DialogTrigger,
 } from "./Dialog";
-export { Button } from "./Button";
 export {
   Table,
   TableBody,

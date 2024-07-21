@@ -27,6 +27,7 @@ const LaureateOverview = () => {
         laureateResidence={laureateResidence}
         onInputChange={onInputChange}
       />
+      <div className="mb-7"/>
       <LaureatesContainer
         laureateName={laureateName}
         laureateResidence={laureateResidence}

@@ -20,10 +20,10 @@ export const LaureatesTable = memo(({
     <>
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Id</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Known as</TableHead>
+          <TableRow className="border-t">
+            <TableHead className="w-[100px] text-lg">Id</TableHead>
+            <TableHead className="text-lg">Name</TableHead>
+            <TableHead className="text-lg">Known as</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -34,7 +34,7 @@ export const LaureatesTable = memo(({
               onClick={() => handleRowClick(laureate.id)}
             >
               <TableCell>{laureate.id}</TableCell>
-              <TableCell className="font-medium">{laureate.fullName?.en || laureate.orgName?.en}</TableCell>
+              <TableCell>{laureate.fullName?.en || laureate.orgName?.en}</TableCell>
               <TableCell>{laureate.knownName?.en || laureate.nativeName}</TableCell>
             </TableRow>
           ))}

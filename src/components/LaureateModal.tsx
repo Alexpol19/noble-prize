@@ -25,7 +25,7 @@ const LaureateModal = memo(({
         {laureate && !loading && (
           <div>
             <p className="my-3 flex gap-3">
-              <span>{laureate.birth?.date ? 'Born' : 'Founded'}:</span>
+              <span className='font-semibold'>{laureate.birth?.date ? 'Born' : 'Founded'}:</span>
               <span>
                 {
                   laureate.birth?.date
@@ -35,30 +35,34 @@ const LaureateModal = memo(({
               </span>
             </p>
             {laureate.death && <p className="my-3 flex gap-3">
-              <span>Dead:</span>
+              <span className='font-semibold'>Died:</span>
               <span>{format(laureate.death.date, "dd MMMM yyyy")}</span>
             </p>}
             
-            <h4 className='text-lg font-semibold'>Prizes ({laureate.nobelPrizes.length}):</h4>
+            <h4 className='text-lg font-semibold'>Prizes:</h4>
 
             <div className='pl-2'>
               {laureate.nobelPrizes.map((prize: any, i: number) => (
                 <div key={uuidv4()} className={`${i !== laureate.nobelPrizes.length -1 && 'border-b border-gray-300 mb-2'}`}>
-                  <p className="my-3 flex gap-3">
+                  <p className="my-3 flex gap-3 font-semibold">
                     {prize.categoryFullName.en} {prize.awardYear}
                   </p>
-                  <p className="my-3 flex gap-3">
-                    Prize motivation: {prize.motivation.en}
+                  <p className="my-3">
+                    <span className='font-semibold'>Prize motivation: </span>
+                    {prize.motivation.en}
                   </p>
                   <p className="my-3 flex gap-3">
-                    Prize portion: {prize.portion}
+                    <span className='font-semibold'>Prize portion: </span>
+                    {prize.portion}
                   </p>
                   <p className="my-3 flex gap-3">
-                    Prize amount: {prize.prizeAmount}
+                    <span className='font-semibold'>Prize amount: </span>
+                    {prize.prizeAmount}
                   </p>
                   {prize.residences?.length && (
                     <p className="my-3 flex gap-3">
-                      Residence: {prize.residences[0].locationString.en}
+                    <span className='font-semibold'>Residence: </span>
+                      {prize.residences[0].locationString.en}
                     </p>
                   )}
                 </div>

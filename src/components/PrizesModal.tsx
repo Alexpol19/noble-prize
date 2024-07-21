@@ -25,16 +25,16 @@ const PrizesModal = ({
           <div key={uuidv4()} className={`${i !== prizes.length -1 && 'border-b border-gray-300 mt-3'}`}>
             <span className='text-lg font-bold mb-3'>{prize.categoryFullName.en}</span>
             <p className="my-3 flex gap-3">
-              <span>Awarded at:</span>
+              <span className='font-semibold'>Awarded at:</span>
               <span>{prize.dateAwarded && formatDate(prize.dateAwarded) || awardYear}</span>
             </p>
 
             <p className="my-3 flex gap-3">
-              <span>Prize amount adjusted:</span>
+              <span className='font-semibold'>Prize amount adjusted:</span>
               <span>{prize.prizeAmountAdjusted.toLocaleString()}</span>
             </p>
             
-            <h4 className='text-lg font-semibold'>Laureates ({prize.laureates.length}):</h4>
+            <h4 className='text-lg font-semibold'>Laureates:</h4>
 
             <div className='pl-2'>
               {prize.laureates.map((laureate: any, i: number) => (

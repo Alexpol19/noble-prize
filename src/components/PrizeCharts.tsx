@@ -19,7 +19,7 @@ const countCategories = (data: any[]):Record<string, number> => {
 const groupPrizesByYear = (prizes: any[]):Record<string, any> => prizes.reduce((acc, prize) => {
   const { awardYear } = prize;
   if (!acc[awardYear]) {
-      acc[awardYear] = [];
+    acc[awardYear] = [];
   }
   acc[awardYear].push(prize);
   return acc;
@@ -29,16 +29,16 @@ const groupLaureatesByYear = (laureates: any[], yearsRange: number[]):Record<str
   const [minYear, maxYear] = yearsRange;
 
   return laureates.reduce((acc, laureate) => {
-      laureate.nobelPrizes.forEach((prize: any) => {
-          const { awardYear } = prize;
-          if (awardYear >= minYear && awardYear <= maxYear) {
-              if (!acc[awardYear]) {
-                  acc[awardYear] = [];
-              }
-              acc[awardYear].push(laureate);
-          }
-      });
-      return acc;
+    laureate.nobelPrizes.forEach((prize: any) => {
+      const { awardYear } = prize;
+      if (awardYear >= minYear && awardYear <= maxYear) {
+        if (!acc[awardYear]) {
+          acc[awardYear] = [];
+        }
+        acc[awardYear].push(laureate);
+      }
+    });
+    return acc;
   }, {});
 };
 

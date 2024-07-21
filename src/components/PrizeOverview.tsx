@@ -10,7 +10,7 @@ const PrizeOverview = () => {
       <h2 className='text-3xl font-semibold text-center mt-7 mb-5'>Prize Overview:</h2>
 
       <div className='flex items-center gap-10'>
-        <h3 className='text-2xl font-semibold text-center my-0'>Filter by year range</h3>
+        <h3 className='text-lg font-semibold text-center my-0'>Filter by year range</h3>
         <SelectYearRange
           value={`${yearsRange[0]}-${yearsRange[1]}`}
           handleChangeValue={(range:string) => {

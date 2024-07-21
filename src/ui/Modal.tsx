@@ -20,7 +20,7 @@ const Modal = ({
       <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] overflow-y-auto w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
         <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
           {title && !titleHref && <span className='text-xl'>{title}</span>}
-          {title && titleHref && <a href={titleHref} target='_blank' className='text-xl'>{title}</a>}
+          {title && titleHref && <a href={titleHref} target='_blank' className='text-xl underline underline-offset-4 hover:text-gray-400 transition-all'>{title}</a>}
         </Dialog.Title>
         
         {content}

@@ -14,6 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui"
+import { ChartData } from "../types"
 
 const chartConfig = {} satisfies ChartConfig
 
@@ -35,7 +36,7 @@ export function PrizeChart({
     return Object.values(data).reduce((acc, curr) => acc + curr, 0)
   }, [data]);
 
-  const chartData = React.useMemo(() => {
+  const chartData: ChartData = React.useMemo(() => {
     return [...Object.entries(data).map((item)=>({
       key: item[0],
       value: item[1],

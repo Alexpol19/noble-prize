@@ -13,6 +13,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui"
+import { ChartData } from "../types";
 
 export function TimeSeriesChart({
   title,
@@ -24,7 +25,7 @@ export function TimeSeriesChart({
   title: string,
   subtitle: string,
   tooltipLabel: string,
-  data: {key:string, value: number}[]
+  data: ChartData
   onChartClick?: (activeLabel?: string) => void;
 }) {
 

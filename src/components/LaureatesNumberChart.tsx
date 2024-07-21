@@ -1,6 +1,7 @@
 import React from "react"
 import { TimeSeriesChart } from "./TimeSeriesChart";
 import LaureatesModal from "./LaureatesModal";
+import { ChartData } from "../types";
 
 export function LaureatesNumberChart({
   title,
@@ -14,7 +15,7 @@ export function LaureatesNumberChart({
   const [laureatesPerYear, setLaureatesPerYear] = React.useState(null)
   const [laureatesYear, setLaureatesYear] = React.useState<string | null>(null)
 
-  const chartData = React.useMemo(() => {
+  const chartData: ChartData = React.useMemo(() => {
     return [...Object.entries(data).map((item)=>({
       key: item[0],
       value: item[1].length,

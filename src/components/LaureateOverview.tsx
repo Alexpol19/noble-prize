@@ -1,24 +1,11 @@
-import { LaureatesTable } from './LaureatesTable'
-import { useLaureate, useSearchLaureates } from '../hooks'
 import { useState } from 'react'
-import LaureateModal from './LaureateModal';
 import SearchLaureate from './SearchLaureate';
+import LaureatesContainer from './LaureatesContainer';
 
 const LaureateOverview = () => {
-  const [ laureateId, setLaureateId ] = useState<number>(0);
   const [ laureateName, setName ] = useState('');
   const [ laureateResidence, setResidence ] = useState('');
   const [ lastChanged, setLastChanged ] = useState<'name' | 'residence'>('name');
-
-  const {
-    data: dataLaureates,
-    isFetching: isFetchingLaureates
-  } = useSearchLaureates(lastChanged === 'name' ? laureateName : '', lastChanged === 'residence' ? laureateResidence : '');
-
-  const {
-    data: dataLaureate,
-    isFetching: isFetchingLaureate
-  } = useLaureate(laureateId);
 
   const onInputChange = (value: string, field: 'name' | 'residence') => {
     if(field === 'name') {
@@ -37,16 +24,10 @@ const LaureateOverview = () => {
         laureateResidence={laureateResidence}
         onInputChange={onInputChange}
       />
-      <LaureatesTable
-        data={dataLaureates}
-        handleRowClick={setLaureateId}
-        loading={isFetchingLaureates}
-      />
-      <LaureateModal
-        laureate={dataLaureate?.length && dataLaureate[0]}
-        open={!!laureateId}
-        loading={isFetchingLaureate}
-        onOpenChange={(open) => !open && setLaureateId(0)}
+      <LaureatesContainer
+        laureateName={laureateName}
+        laureateResidence={laureateResidence}
+        lastChanged={lastChanged}
       />
     </div>
     )

@@ -2,8 +2,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { format } from "date-fns";
 import Modal from '../ui/Modal';
 import { extractYear, formatDate } from '../utils';
+import { memo } from 'react';
 
-const LaureateModal = ({
+const LaureateModal = memo(({
   laureate,
   open,
   loading,
@@ -75,6 +76,6 @@ const LaureateModal = ({
       </>
     }
   />
-);
+));
 
 export default LaureateModal;

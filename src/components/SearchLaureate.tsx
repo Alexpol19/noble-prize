@@ -8,7 +8,9 @@ const SearchLaureate = memo(({
   laureateName: string,
   laureateResidence: string,
   onInputChange: (value: string, field: 'name' | 'residence') => void,
-}) => (
+}) => {
+  console.log('updated')
+  return (
   <div className='flex items-center gap-5'>
     <h3 className='text-2xl font-semibold text-center my-0'>Search for a Laureate:</h3>
     <input
@@ -24,6 +26,6 @@ const SearchLaureate = memo(({
       onChange={(e) => onInputChange(e.target.value, 'residence')}
     />
   </div>
-))
+)})
 
 export default SearchLaureate;

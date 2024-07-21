@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import SearchLaureate from './SearchLaureate';
 import LaureatesContainer from './LaureatesContainer';
+import LaureateModalContainer from './LaureateModalContainer';
 
 const LaureateOverview = () => {
+  const [ laureateId, setLaureateId ] = useState<number>(0);
+
   const [ laureateName, setName ] = useState('');
   const [ laureateResidence, setResidence ] = useState('');
   const [ lastChanged, setLastChanged ] = useState<'name' | 'residence'>('name');
@@ -28,9 +31,14 @@ const LaureateOverview = () => {
         laureateName={laureateName}
         laureateResidence={laureateResidence}
         lastChanged={lastChanged}
+        setLaureateId={setLaureateId}
+      />
+      <LaureateModalContainer
+        setLaureateId={setLaureateId}
+        laureateId={laureateId}
       />
     </div>
-    )
+  )
 }
 
 export default LaureateOverview;

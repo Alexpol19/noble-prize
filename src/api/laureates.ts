@@ -9,4 +9,3 @@ export const getLaureate = async (laureateID: number) => {
   const response = await axios.get(`https://api.nobelprize.org/2.1/laureate/${laureateID}`);
   return response.data;
 };
-

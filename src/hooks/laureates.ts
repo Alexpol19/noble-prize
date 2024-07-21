@@ -33,13 +33,14 @@ const useLaureates = (nobelPrizeYear?: number, yearTo?: number) => {
 
 // search laureates by name or by residence
 const useSearchLaureates = (name?:string, residence?:string) => {
-  const shouldFetch = name || residence ? true : false;
 
-  const searchParams = useDebounce([name, residence], 1000)
+  const debouncedName = useDebounce(name, 1000);
+  const debouncedResidence = useDebounce(residence, 1000);
+  const shouldFetch = debouncedName || debouncedResidence ? true : false;
 
   const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ['laureatesSearch', ...searchParams],
-    queryFn: () => getAllLaureates(undefined, undefined, name, residence),
+    queryKey: ['laureatesSearch', debouncedName, debouncedResidence],
+    queryFn: () => getAllLaureates(undefined, undefined, debouncedName, debouncedResidence),
     staleTime: Infinity,
     enabled: shouldFetch,
   });

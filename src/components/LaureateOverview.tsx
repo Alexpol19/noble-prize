@@ -32,13 +32,11 @@ const LaureateOverview = () => {
   return (
     <div>
       <h2 className='text-3xl font-semibold text-center mt-7 mb-5'>Laureate Overview:</h2>
-
       <SearchLaureate
         laureateName={laureateName}
         laureateResidence={laureateResidence}
         onInputChange={onInputChange}
       />
-
       <LaureatesTable
         data={dataLaureates}
         handleRowClick={setLaureateId}

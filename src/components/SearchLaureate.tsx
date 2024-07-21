@@ -1,4 +1,6 @@
-const SearchLaureate = ({
+import { memo } from "react";
+
+const SearchLaureate = memo(({
   laureateName,
   laureateResidence,
   onInputChange,
@@ -22,6 +24,6 @@ const SearchLaureate = ({
       onChange={(e) => onInputChange(e.target.value, 'residence')}
     />
   </div>
-)
+))
 
 export default SearchLaureate;

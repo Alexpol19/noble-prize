@@ -1,3 +1,4 @@
+import { memo } from "react"
 import {
   Table,
   TableBody,
@@ -7,7 +8,7 @@ import {
   TableRow,
 } from "../ui"
 
-export function LaureatesTable({
+export const LaureatesTable = memo(({
   data,
   handleRowClick,
   loading,
@@ -15,8 +16,7 @@ export function LaureatesTable({
   data?: any[],
   handleRowClick: (id: number) => void,
   loading: boolean,
-}) {
-  return (
+}) => (
     <>
       <Table>
         <TableHeader>
@@ -48,4 +48,4 @@ export function LaureatesTable({
       )}
     </>
   )
-}
+)

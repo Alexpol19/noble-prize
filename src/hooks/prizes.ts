@@ -1,7 +1,7 @@
 import {
   useQuery,
 } from '@tanstack/react-query'
-import { getPrizes, getPrize } from '../api';
+import { getPrizes } from '../api';
 
 // get all prizes
 const getAllPrizes = async (nobelPrizeYear?: number, yearTo?: number) => {
@@ -30,15 +30,4 @@ const usePrizes = (nobelPrizeYear?: number, yearTo?: number) => {
   return { isPending, error, data, isFetching };
 };
 
-// get 1 prize
-const usePrize = (category: string, year: number) => {
-  const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ['prize', category, year],
-    queryFn: () => getPrize(category, year),
-    staleTime: Infinity,
-  });
-
-  return { isPending, error, data, isFetching };
-};
-
-export { usePrizes, usePrize };
+export { usePrizes };

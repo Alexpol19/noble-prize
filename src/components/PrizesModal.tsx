@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { format } from "date-fns";
 import Modal from '../ui/Modal';
-import { extractYear, formatDate } from '../utils';
+import { formatDate } from '../utils';
 
 const PrizesModal = ({
   prizes,
@@ -23,11 +22,11 @@ const PrizesModal = ({
     content={
       <>
         {prizes && !loading && prizes.map((prize, i) => (
-          <div key={prize.id} className={`${i !== prizes.length -1 && 'border-b border-gray-300 mt-3'}`}>
+          <div key={uuidv4()} className={`${i !== prizes.length -1 && 'border-b border-gray-300 mt-3'}`}>
             <span className='text-lg font-bold mb-3'>{prize.categoryFullName.en}</span>
             <p className="my-3 flex gap-3">
               <span>Awarded at:</span>
-              <span>{format(prize.dateAwarded, "dd MMMM yyyy")}</span>
+              <span>{prize.dateAwarded && formatDate(prize.dateAwarded) || awardYear}</span>
             </p>
 
             <p className="my-3 flex gap-3">
@@ -37,27 +36,17 @@ const PrizesModal = ({
             
             <h4 className='text-lg font-semibold'>Laureates ({prize.laureates.length}):</h4>
 
-            {/* <div className='pl-2'>
+            <div className='pl-2'>
               {prize.laureates.map((laureate: any, i: number) => (
-                <div key={uuidv4()} className={`${i !== prize.laureates.length -1 && 'border-b border-gray-300 mb-2'}`}>
-                    <span className='text-lg font-bold mb-3'>{laureate.fullName?.en || laureate.orgName?.en}</span>
-                    <p className="my-3 flex gap-3">
-                      <span>{laureate.birth?.date ? 'Born' : 'Founded'}:</span>
-                      <span>
-                        {
-                          laureate.birth?.date
-                            ? (formatDate(laureate.birth.date) || extractYear(laureate.birth.date ))
-                            : (formatDate(laureate.founded.date) || extractYear(laureate.founded.date ))
-                        }
-                      </span>
+                <div key={laureate.id} className={`${i !== prize.laureates.length -1 && 'border-b border-gray-300 mb-2'}`}>
+                    <span className='text-base font-bold mb-3'>{laureate.fullName?.en || laureate.orgName?.en}</span>
+                    <p className="my-3">
+                      <span className='font-semibold'>Motivation: </span>
+                      <span>{laureate.motivation.en}</span>
                     </p>
-                    {laureate.death && <p className="my-3 flex gap-3">
-                      <span>Dead:</span>
-                      <span>{format(laureate.death.date, "dd MMMM yyyy")}</span>
-                    </p>}
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
         ))}
 

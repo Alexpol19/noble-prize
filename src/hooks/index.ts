@@ -1,2 +1,2 @@
-export { usePrizes, usePrize } from "./prizes";
+export { usePrizes } from "./prizes";
 export { useLaureates, useLaureate, useSearchLaureates } from "./laureates"

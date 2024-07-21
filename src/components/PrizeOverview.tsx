@@ -2,7 +2,6 @@ import { PrizeChart } from './PrizeChart'
 import { usePrizes, useLaureates } from '../hooks'
 import { SelectYearRange } from './SelectYearRange'
 import { useMemo, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid';
 import { LaureatesNumberChart } from './LaureatesNumberChart';
 import { PrizeAmountChart } from './PrizeAmountChart';
 
@@ -49,11 +48,9 @@ const PrizeOverview = () => {
 
   const {
     data,
-    isFetching
   } = usePrizes(yearsRange[0], yearsRange[1]);
   const {
     data: dataLaureates,
-    isFetching: isFetchingLaureates
   } = useLaureates(yearsRange[0], yearsRange[1]);
 
   const categoryAwards = useMemo(() => countCategories(data || []), [data]);

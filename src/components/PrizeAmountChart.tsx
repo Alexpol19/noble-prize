@@ -15,17 +15,16 @@ export function PrizeAmountChart({
   const [prizesYear, setPrizesYear] = React.useState<string | null>(null)
 
   const chartData = React.useMemo(() => {
-  return Object.entries(data).map(([key, values]) => ({
-    key,
-    value: values[0]?.prizeAmountAdjusted ?? 0,
-  }));
-}, [data]);
+    return Object.entries(data).map(([key, values]) => ({
+      key,
+      value: values[0]?.prizeAmountAdjusted ?? 0,
+    }));
+  }, [data]);
 
   const onChartClick = (activeLabel?: string) => {
     setPrizesPerYear(activeLabel ? data[activeLabel] : null)
     setPrizesYear(activeLabel || null)
   }
-  console.log(prizesPerYear)
 
   return (
     <>
